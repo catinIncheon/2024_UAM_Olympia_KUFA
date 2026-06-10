@@ -1,3 +1,4 @@
+### 외부 DB에 접근하여 실시간으로 최근 데이터를 print하는 코드
 import pymysql
 import time
 
