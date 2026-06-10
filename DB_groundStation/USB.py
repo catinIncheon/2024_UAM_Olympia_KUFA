@@ -1,3 +1,4 @@
+###라파에서 스마트폰과 연결하여 DB에 업로드하는 코드
 import serial
 import time
 import pymysql
