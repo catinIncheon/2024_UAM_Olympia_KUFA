@@ -25,7 +25,7 @@ UAM 도심항공교통 운용을 위해 공중 회랑 내 LTE/5G 전파환경을
 
 ## 🖥️ 2. 시스템 구성
 
-![하드웨어 구성](./images/hardware.png)
+![하드웨어 구성](./images/mina_sys.png)
 
 | 구분 | 구성 요소 | 역할 |
 |---|---|---|
@@ -83,7 +83,7 @@ UAM 도심항공교통 운용을 위해 공중 회랑 내 LTE/5G 전파환경을
 <p align="center">
   <img src="./images/3D_plot1.png" width="32%">
   <img src="./images/3D_plot2.png" width="32%">
-  <img src="./images/3D_plot3.png" width="32%">
+  <img src="./images/3D_lpot3.png" width="32%">
 </p>
 
 ---
