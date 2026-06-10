@@ -61,7 +61,6 @@ GNU Radio flowgraph를 통해 수신한 I/Q 샘플을 DB에 저장했습니다.
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white">
   <img src="https://img.shields.io/badge/SDR-555555?style=flat">
-  <img src="https://img.shields.io/badge/Leaflet-199900?style=flat&logo=leaflet&logoColor=white">
 </p>
 ---
 📡 주요 기술
