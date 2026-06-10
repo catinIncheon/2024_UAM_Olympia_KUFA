@@ -1,0 +1,188 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+
+```
+<Button
+    android:id="@+id/startMeasurementButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Start Measurement"
+    android:textSize="24sp"
+    android:layout_margin="16dp"
+    android:minWidth="64dp"
+    android:minHeight="48dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:onClick="onStartMeasurementClick"
+    android:enabled="false" />
+
+<Button
+    android:id="@+id/stopMeasurementButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Stop Measurement"
+    android:textSize="24sp"
+    android:layout_margin="16dp"
+    android:minWidth="64dp"
+    android:minHeight="48dp"
+    app:layout_constraintTop_toBottomOf="@id/startMeasurementButton"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:onClick="onStopMeasurementClick" />
+
+<TextView
+    android:id="@+id/statusTextView"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Status: Idle"
+    android:textSize="18sp"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/stopMeasurementButton"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_gravity="center" />
+
+<LinearLayout
+    android:id="@+id/checkBoxLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/statusTextView"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5">
+
+    <CheckBox
+        android:id="@+id/sktCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SKT"
+        android:textSize="24sp" />
+
+    <CheckBox
+        android:id="@+id/ktCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KT"
+        android:textSize="24sp" />
+
+    <CheckBox
+        android:id="@+id/lgCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LG U+"
+        android:textSize="24sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/frequencyCheckBoxLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/checkBoxLayout"
+    app:layout_constraintHorizontal_bias="0.5">
+
+    <CheckBox
+        android:id="@+id/frequencyBand8CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="800MHz~900MHz"
+        android:textSize="12sp"/>
+
+    <CheckBox
+        android:id="@+id/frequencyBand3CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.8GHz"
+        android:textSize="12sp"/>
+
+    <CheckBox
+        android:id="@+id/frequencyBand1CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.1GHz"
+        android:textSize="12sp"/>
+
+    <CheckBox
+        android:id="@+id/frequencyBand5CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.6GHz"
+        android:textSize="12sp"/>
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/frequencyCheckBoxLayout2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/frequencyCheckBoxLayout1"
+    app:layout_constraintHorizontal_bias="0.5">
+
+    <CheckBox
+        android:id="@+id/frequencyBand3500CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.5GHz"
+        android:textSize="12sp"/>
+</LinearLayout>
+
+<com.jjoe64.graphview.GraphView
+    android:id="@+id/rsrpGraph"
+    android:layout_width="0dp"
+    android:layout_height="100dp"
+    app:layout_constraintTop_toBottomOf="@id/frequencyCheckBoxLayout2"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="8dp"
+    app:layout_constraintBottom_toTopOf="@id/rsrqGraph" />
+
+<com.jjoe64.graphview.GraphView
+    android:id="@+id/rsrqGraph"
+    android:layout_width="0dp"
+    android:layout_height="100dp"
+    app:layout_constraintTop_toBottomOf="@id/rsrpGraph"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="8dp"
+    app:layout_constraintBottom_toTopOf="@id/sinrGraph" />
+
+<com.jjoe64.graphview.GraphView
+    android:id="@+id/sinrGraph"
+    android:layout_width="0dp"
+    android:layout_height="100dp"
+    app:layout_constraintTop_toBottomOf="@id/rsrqGraph"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="8dp"
+    app:layout_constraintBottom_toTopOf="@+id/kuleaTextView" />
+
+<TextView
+    android:id="@+id/kuleaTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:text="KUSA"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent" />
+
+```
+
+</androidx.constraintlayout.widget.ConstraintLayout>
