@@ -1,46 +1,108 @@
-UAM 공중회랑 전파환경 모니터링 시스템
-> 2024 전국 대학생 UAM 올림피아드 전파환경분석 부문 출품작
+# UAM 공중회랑 전파환경 모니터링 시스템
+
+> 2024 전국 대학생 UAM 올림피아드 전파환경분석 부문 출품작  
+> 드론 기반 상용 이동통신망 전파환경 측정·저장·시각화 시스템
+
 ![시스템 구성도](./images/mina_sys.png)
+
 ---
-📌 프로젝트 개요
-UAM(도심항공교통) 운용을 위한 공중 회랑에서의 상용 이동통신망 전파환경 분석 시스템. 스마트폰과 Raspberry Pi를 드론에 탑재해 GPS 위치 데이터와 RF 측정값을 실시간으로 연계 저장하고, 지상 관제 시스템에서 전파맵 및 3D Plot으로 시각화함.
+
+## 1. 프로젝트 개요
+
+UAM 도심항공교통 운용을 위해 공중 회랑 내 LTE/5G 전파환경을 측정하고 분석한 프로젝트입니다.  
+스마트폰과 Raspberry Pi를 드론에 탑재하여 GPS 위치 데이터와 RF 측정값을 실시간으로 연계 저장하고,  
+지상 관제 PC에서 전파맵과 3D Plot으로 시각화했습니다.
+
+### 핵심 기능
+
+- LTE/5G 상용망 기반 RF 지표 수집
+- GPS 위치 정보와 측정 데이터 동기화
+- Raspberry Pi 기반 실시간 DB 저장
+- Python 기반 전파맵 및 3D Plot 시각화
+- 고도별·주파수 대역별 전파환경 비교 분석
+
 ---
-🛠 시스템 구성
+
+## 2. 시스템 구성
+
 ![하드웨어 구성](./images/hardware.png)
-파트	구성 요소
-측정	Galaxy S24+ (Android 앱, RSRP/RSRQ/SINR 수집)
-중계	Raspberry Pi 4 (MySQL DB 저장, RS232 Serial Interface)
-비행	Holybro S550 드론 (탑재 중량 최대 1.5kg)
-시각화	PC (Python, Jupyter — 전파맵 / 3D Plot)
+
+| 구분 | 구성 요소 | 역할 |
+|---|---|---|
+| 측정 | Galaxy S24+ | Android 앱 기반 RSRP, RSRQ, SINR 수집 |
+| 중계 | Raspberry Pi 4 | GPS/RF 데이터 저장 및 전송 |
+| 비행 | Holybro S550 Drone | 측정 장비 탑재 및 공중 회랑 비행 |
+| 시각화 | PC | Python 기반 전파맵 및 3D Plot 생성 |
+
 ---
-📡 측정 파라미터
-지표	설명	좋음	양호	나쁨	매우 나쁨
-RSRP	신호 전력 (dBm)	≥ -80	-80 ~ -90	-95 ~ -100	≤ -100
-RSRQ	신호 품질 (dB)	≥ -10	-10 ~ -15	-15 ~ -20	≤ -20
-SINR	신호 대 간섭·잡음비 (dB)	≥ 20	13 ~ 20	0 ~ 13	≤ 0
-측정 주파수 대역 : LTE Band5 (800~900 MHz) / LTE Band7 (2.6 GHz) / 5G Band48 (3.5 GHz)
+
+## 3. 측정 항목
+
+| 지표 | 의미 | 단위 |
+|---|---|---|
+| RSRP | 수신 신호 전력 | dBm |
+| RSRQ | 수신 신호 품질 | dB |
+| SINR | 신호 대 간섭·잡음비 | dB |
+
+### 측정 주파수 대역
+
+| 구분 | 대역 |
+|---|---|
+| LTE Band 5 | 800~900 MHz |
+| LTE Band 7 | 2.6 GHz |
+| 5G Band 48 | 3.5 GHz |
+
 ---
-🔧 주요 기술
-기술	내용
-Android TelephonyManager API	실제 핸드오버를 반영한 상용망 측정 — 스펙트럼 분석기 없이 실측 가능
-Cubic Spline Interpolation	드론 이동 중 측정 누락 영역을 3차 다항식 보간으로 보완
-실시간 DB 저장	GPS(위도·경도·고도) + RF 측정값 동시 저장 → Ground Station 전송
+
+## 4. 주요 기술
+
+| 기술 | 적용 내용 |
+|---|---|
+| Android TelephonyManager API | 스마트폰 기반 상용망 RF 지표 수집 |
+| RS-232 Serial Interface | 스마트폰·Raspberry Pi 간 측정 데이터 전달 |
+| MySQL | GPS 위치 정보와 RF 측정값 동시 저장 |
+| Cubic Spline Interpolation | 드론 이동 중 발생한 측정 누락 구간 보간 |
+| Python / Jupyter | 전파맵 및 3D Plot 시각화 |
+
 ![보간 전후 비교](./images/interpolation.png)
+
 ---
-📊 측정 결과
+
+## 5. 측정 및 분석 결과
+
+주파수 대역별, 고도별 전파환경 차이를 비교 분석했습니다.  
+특히 800 MHz, 2.6 GHz, 3.5 GHz 대역에서의 수신 전력 및 품질 변화를 확인하고,  
+10 m와 20 m 고도 조건에서의 전파 특성 차이를 시각화했습니다.
+
+### Radio Map
+
 ![전파맵](./images/radiomap.png)
-![3D Plot1](./images/3D_plot1.png)
-![3D Plot2](./images/3D_plot2.png)
-![3D Plot3](./images/3D_plot3.png)
-주파수 대역별(800MHz / 2.6GHz / 3.5GHz) 전파환경 특성 차이 실측, 고도별(10m / 20m) 신호 품질 변화 비교 분석
+
+### 3D Visualization
+
+<p align="center">
+  <img src="./images/3D_plot1.png" width="32%">
+  <img src="./images/3D_plot2.png" width="32%">
+  <img src="./images/3D_plot3.png" width="32%">
+</p>
+
 ---
-💻 기술 스택
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
-![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=flat&logo=raspberrypi&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
+
+## 6. 기술 스택
+
+<p>
+  <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white">
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?style=flat&logo=raspberrypi&logoColor=white">
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white">
+</p>
+
 ---
-🏆 성과
-2024 전국 대학생 UAM 올림피아드 전파환경부문 장려상 수상
+
+## 7. 성과
+
+- 2024 전국 대학생 UAM 올림피아드 전파환경분석 부문 장려상 수상
+- 드론 기반 LTE/5G 전파환경 측정 시스템 구현
+- GPS-RF 데이터 연계 저장 및 3D 시각화 파이프라인 구축
