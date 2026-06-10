@@ -106,3 +106,7 @@ UAM 도심항공교통 운용을 위해 공중 회랑 내 LTE/5G 전파환경을
 - 2024 전국 대학생 UAM 올림피아드 전파환경분석 부문 장려상 수상
 - 드론 기반 LTE/5G 전파환경 측정 시스템 구현
 - GPS-RF 데이터 연계 저장 및 3D 시각화 파이프라인 구축
+- 프로젝트 연구 결과 KCI 등재 논문 게재
+
+📄 **Publication**  
+[UAM 공중회랑 전파환경 분석 관련 KCI 논문 바로가기](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003221567)
